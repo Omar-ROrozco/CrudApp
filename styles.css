@@ -1,0 +1,11 @@
+h1 {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(19, 83, 80);
+    color: white;
+    padding: .5em;
+}
+
+div .col-6 {
+    margin-top: 1.5em;
+}
