@@ -43,21 +43,55 @@ function mostrar() {
                 <b>${cabeza}</b>
                 <p> ${reportero}</p>
                 <div class="btn-group me-2" role="group" aria-label="Second group">
-                    <button type="button" class="btn "><i class="fas fa-edit " id="edit"></i></button>
-                    <button type="button" class="btn "><i class="fas fa-trash-alt btn " id="delete"></i></button>
+                    <button type="button" onclick="editar(${cabeza})" class="btn "><i class="fas fa-edit " ></i></button>
+                    <button type="button" onclick="eliminar()" class="btn "><i class="fas fa-trash-alt btn " ></i></button>
 
                  </div>
 
 
         </div>`
     }
-    e.preventDefault();
+
 
 }
 mostrar();
 
+//Funcion editar
+function editar(cabeza) {
+
+    let notas = JSON.parse(localStorage.getItem("Notas"));
+    for (let i = 0; i < notas.length; i++) {
+        if (notas[i].cabeza === cabeza) {
+            document.getElementById("formulario").innerHTML = `    
+            <label> Editar cabeza</label>
+            <input type="text" id="newcabeza" class="form-control">
+                <p>${notas[i].cabeza}</p>
+            <label class="mt-2"> Editar sumario</label>
+            <input type="text" id="newsumario" class="form-control mt-2">
+            <label class="mt-2">Editar reportero</label>
+            <input type="text" id="newreportero" class="form-control mt-2">
+            <label class="mt-2"> Editar nota</label>
+            <textarea class="form-control" id="newnota"></textarea>
+            <button  class="btn btn-success onclick="(${i})" mt-4">Actualizar</button>
+            <button  class="btn btn-danger mt-4">Cancelar</button>
 
 
+            `
+
+        }
+    }
+
+}
+//Funcion de actualizar
+function actualizar(i) {
+    let notas = JSON.parse(localStorage.getItem("Notas"));
+    notas[i].cabeza = document.getElementById("newcabeza").value;
+    notas[i].sumario = document.getElementById("newsumario").value;
+    notas[i].reportero = document.getElementById("newreportero").value;
+    notas[i].nota = document.getElementById("newnota").value;
+    localStorage.setItem("notas", JSON.stringify(notas));
+
+}
 
 
 
